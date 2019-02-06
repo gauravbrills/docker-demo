@@ -10,7 +10,7 @@ pipeline{
     steps{
       echo 'Starting docker build'
       sh "echo dockerRepo= ${params.DOCKER_REPO}"      
-      sh "docker build -t 550640273869.dkr.ecr.us-east-1.amazonaws.com/myapp:${GIT_COMMIT} ."
+      sh "docker build -t 550640273869.dkr.ecr.us-east-1.amazonaws.com/myapp:${params.IMAGE_TAG} ."
       sh '''
           eval  "\\$(aws ecr get-login --no-include-email --region us-east-1)"
          '''
