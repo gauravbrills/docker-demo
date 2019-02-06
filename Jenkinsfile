@@ -18,6 +18,19 @@ pipeline{
       sh "docker push ${params.DOCKER_REPO}:${params.IMAGE_TAG}"
      }
    }
+   stage('Approval for deployment') {
+      steps {
+        script {
+          def userInput = input(id: 'confirm', message: 'deploy ?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Deploy container', name: 'confirm'] ])
+        }
+      }
+    }
+  stage('deploy container') {
+      steps {
+         echo 'deploying container'
+      }
+    }
+
   }
   post {
         always {
