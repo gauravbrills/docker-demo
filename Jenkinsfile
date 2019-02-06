@@ -1,8 +1,6 @@
 pipeline{
  agent any
- options([
-    buildDiscarder(logRotator(daysToKeepStr: '4', numToKeepStr: '2')),
-])
+ options { buildDiscarder(logRotator(daysToKeepStr: '4', numToKeepStr: '2')) }
  parameters {
         string(name: 'DOCKER_REPO', defaultValue: '550640273869.dkr.ecr.us-east-1.amazonaws.com/myapp', description: 'Docker Repository ?')
         string(name: 'IMAGE_TAG', defaultValue: '2019.01.01', description: 'Docker Image Tag ?')
