@@ -1,6 +1,6 @@
 pipeline{
  agent any
- properties([
+ options([
     buildDiscarder(logRotator(daysToKeepStr: '4', numToKeepStr: '2')),
 ])
  parameters {
