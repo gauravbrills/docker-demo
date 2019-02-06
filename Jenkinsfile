@@ -27,8 +27,10 @@ pipeline{
     }
   stage('deploy container') {
       steps {
+        script {
         appVersionNumber = "${params.IMAGE_TAG}"
         def job = build job: 'ECS_CONTAINER_DEPLOY', parameters: [[$class: 'StringParameterValue', name: 'APP_VERSION_NUMBER', value: appVersionNumber]]         
+        }
       }
     }
 
