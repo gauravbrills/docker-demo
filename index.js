@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hola from Terraform and Docker   !');
+  res.send('Hello from Terraform and Docker (zero touch)!');
 });
 
 var server = app.listen(3000, function () {
