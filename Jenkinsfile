@@ -6,6 +6,16 @@ pipeline{
         string(name: 'IMAGE_TAG', defaultValue: '2019.01.01', description: 'Docker Image Tag ?')
     }
  stages{
+ stage('Sonarqube analysis') {
+   steps {
+    script {
+             scannerHome = tool 'SonarScanner';
+        }
+     withSonarQubeEnv('SonarQube') {
+         bat "${scannerHome}/bin/sonar-scanner.bat" 
+     }
+    }
+   }
    stage('build'){
     steps{
       echo 'Starting docker build'
