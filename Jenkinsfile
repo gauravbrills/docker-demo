@@ -11,14 +11,16 @@ pipeline{
       echo 'Starting docker build'
       sh "echo dockerRepo= ${params.DOCKER_REPO}"      
       sh "docker build -t 550640273869.dkr.ecr.us-east-1.amazonaws.com/myapp:${GIT_COMMIT} ."
-      sh '''
-          eval  "\\$(aws ecr get-login --no-include-email --region us-east-1)"
-         '''
-      echo "build complete , pushing image to [${params.DOCKER_REPO}]"
-      sh "docker push ${params.DOCKER_REPO}:${GIT_COMMIT}"
      }
    }
-   stage('Approval for deployment') {
+   stage('publish container'){
+     echo "Pushing image to [${params.DOCKER_REPO}]"
+     sh '''
+          eval  "\\$(aws ecr get-login --no-include-email --region us-east-1)"
+         '''
+     sh "docker push ${params.DOCKER_REPO}:${GIT_COMMIT}"
+   }
+   stage('approval for Deployment') {
       steps {
         script {
           def userInput = input(id: 'confirm', message: 'deploy ?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Deploy container', name: 'confirm'] ])
