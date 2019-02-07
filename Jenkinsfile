@@ -14,11 +14,13 @@ pipeline{
      }
    }
    stage('publish container'){
+    steps{
      echo "Pushing image to [${params.DOCKER_REPO}]"
      sh '''
           eval  "\\$(aws ecr get-login --no-include-email --region us-east-1)"
          '''
      sh "docker push ${params.DOCKER_REPO}:${GIT_COMMIT}"
+    }
    }
    stage('approval for Deployment') {
       steps {
