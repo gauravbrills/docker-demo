@@ -7,13 +7,9 @@ pipeline{
     }
  stages{
  stage('Sonarqube analysis') {
-   steps {
-    script {
-             scannerHome = tool 'SonarScanner';
-        }
-     withSonarQubeEnv('SonarQube') {
-         bat "${scannerHome}/bin/sonar-scanner.bat" 
-     }
+   def scannerHome = tool 'SonarQube Scanner 2.8';
+    withSonarQubeEnv('SonarCloud') {
+      sh "${scannerHome}/bin/sonar-scanner"
     }
    }
    stage('build'){
