@@ -1,0 +1,13 @@
+sonar.projectKey=docker-demo
+sonar.projectName=docker jenkins pipeline
+sonar.host.url=https://sonarcloud.io
+sonar.organization=Gaurav Rawat
+sonar.sources=src
+sonar.exclusions=node_modules/**/*
+# =====================================================
+#   Meta-data for the project
+# =====================================================
+
+sonar.links.homepage=https://github.com/gauravbrills/docker-demo 
+sonar.links.scm=https://github.com/gauravbrills/docker-demo
+sonar.links.issue=https://github.com/gauravbrills/docker-demo/issues
